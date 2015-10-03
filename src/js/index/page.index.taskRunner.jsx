@@ -1,38 +1,39 @@
 var React = require('react');
 var _ = require('lodash');
 
-var TestsStore = require('./stores/TestsStore.js');
+var TaskRunnerItem = require('./page.index.taskRunnerItem.jsx');
+
+var Actions = require('./actions/actions.js');
+var TestRunnersStore = require('./stores/TestRunnersStore.js');
 
 module.exports = React.createClass({
     getInitialState() {
         return {
-            tests: TestsStore.tests,
-            isLoading: TestsStore.isLoading
+            tests: TestRunnersStore.tests
         }
     },
     componentDidMount() {
         this.unsubscribes = [
-            TestsStore.listen(this.handleStoreChange)
+            TestRunnersStore.listen(this.handleStoreChange)
         ];
-        console.log('TestsStore, componentDidMount:', TestsStore);
+        console.log('TestRunnersStore, componentDidMount:', TestRunnersStore);
     },
     componentWillUnmount() {
         console.log('componentWillUnmount');
         _.each(this.unsubscribes, (unsubscribe) => { unsubscribe(); });
     },
     handleStoreChange() {
-        console.log('TestsStore, handleStoreChange:', TestsStore);
+        console.log('TestRunnersStore, handleStoreChange:', TestRunnersStore);
         this.setState({
-            tests: TestsStore.tests,
-            isLoading: TestsStore.isLoading
+            testRunners: TestRunnersStore.testRunners
         });
     },
     render() {
         return (
             <div>
                 {
-                    _.map(this.state.tests, (test) => {
-                        return (<div>{test}</div>);
+                    _.map(this.state.testRunners, (testRunner) => {
+                        return (<TaskRunnerItem {...testRunner} />);
                     })
                 }
             </div>

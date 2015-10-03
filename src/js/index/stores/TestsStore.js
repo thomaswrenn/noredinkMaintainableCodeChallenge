@@ -5,19 +5,16 @@ var Actions = require('../actions/actions.js');
 
 module.exports = Reflux.createStore({
     init() {
-        this.tests = {};
-        this.isLoading = true;
+        this.tests = [];
         Actions.addTests.listen(this.onAddTests);
     },
-    onAddTests(tests) {
-        this.tests.concat(tests);
-        this.isLoading = false;
+    onAddTests(newTests) {
+        this.tests = this.tests.concat(newTests);
         this.emitChange();
     },
     emitChange() {
         this.trigger({
-            tests: this.tests,
-            isLoading: this.isLoading
+            tests: this.tests
         });
     },
 });

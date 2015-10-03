@@ -29,7 +29,7 @@ module.exports = function(grunt) {
             },
           },
           js: {
-            files: '**/*.jsx',
+            files: ['./src/**/*.jsx', './src/**/*.js'],
             tasks: ['webpack'],
             options: {
                 livereload: 35729,
@@ -58,7 +58,7 @@ module.exports = function(grunt) {
                 },
                 module: {
                     loaders: [
-                        { test: /\.jsx$/, loader: "babel" }
+                        { test: /\.jsx?$/, loader: "babel" }
                     ]
                 },
                 failOnError: true
