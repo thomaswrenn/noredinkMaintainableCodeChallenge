@@ -16,3 +16,4 @@ grunt
 
 - Grunt with livereload and built in compilation helps maintainability by making dev environments easily reproducable and encouraging fast experimentation for quick learning with livereload.
     - And using Stylus over Sass to avoid requiring Ruby and Sass to be installed
+- Using Actions and Events to manage data updates for better decoupling of modeling and presentation

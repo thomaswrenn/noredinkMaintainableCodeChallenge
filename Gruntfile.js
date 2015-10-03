@@ -50,14 +50,19 @@ module.exports = function(grunt) {
             }
         },
         webpack: {
-          'page.index': {
-            entry: "./src/js/index/page.index.jsx",
-            output: {
-                path: "./dest/js/",
-                filename: "page.index.bundle.js",
-            },
-            failOnError: true
-          }
+            'page.index': {
+                entry: "./src/js/index/page.index.jsx",
+                output: {
+                    path: "./dest/js/",
+                    filename: "page.index.bundle.js",
+                },
+                module: {
+                    loaders: [
+                        { test: /\.jsx$/, loader: "babel" }
+                    ]
+                },
+                failOnError: true
+            }
         }
     });
 
