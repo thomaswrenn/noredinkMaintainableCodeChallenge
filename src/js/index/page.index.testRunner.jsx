@@ -1,7 +1,7 @@
 var React = require('react');
 var _ = require('lodash');
 
-var TaskRunnerItem = require('./page.index.taskRunnerItem.jsx');
+var TestRunnerItem = require('./page.index.testRunnerItem.jsx');
 
 var Actions = require('./actions/actions.js');
 var TestRunnersStore = require('./stores/TestRunnersStore.js');
@@ -16,14 +16,11 @@ module.exports = React.createClass({
         this.unsubscribes = [
             TestRunnersStore.listen(this.handleStoreChange)
         ];
-        console.log('TestRunnersStore, componentDidMount:', TestRunnersStore);
     },
     componentWillUnmount() {
-        console.log('componentWillUnmount');
         _.each(this.unsubscribes, (unsubscribe) => { unsubscribe(); });
     },
     handleStoreChange() {
-        console.log('TestRunnersStore, handleStoreChange:', TestRunnersStore);
         this.setState({
             testRunners: TestRunnersStore.testRunners
         });
@@ -33,7 +30,7 @@ module.exports = React.createClass({
             <div>
                 {
                     _.map(this.state.testRunners, (testRunner) => {
-                        return (<TaskRunnerItem {...testRunner} />);
+                        return (<TestRunnerItem {...testRunner} />);
                     })
                 }
             </div>

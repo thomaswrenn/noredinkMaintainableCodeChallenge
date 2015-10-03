@@ -29,7 +29,7 @@ module.exports = function(grunt) {
             },
           },
           js: {
-            files: ['./src/**/*.jsx', './src/**/*.js'],
+            files: ['./src/js/**/*.jsx', './src/js/**/*.js'],
             tasks: ['webpack'],
             options: {
                 livereload: 35729,
@@ -44,6 +44,7 @@ module.exports = function(grunt) {
         },
         stylus: {
             compile: {
+                compress: false,
                 files: {
                   './dest/css/main.css': './src/css/main.styl'
                 }

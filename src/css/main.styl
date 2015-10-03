@@ -1,5 +1,28 @@
 body {
-    div {
-        background: yellow;
+    box-sizing: border-box;
+}
+
+testStateChangeAnimation(name, scaleAmount) {
+    .{name} {
+        animation-duration: 1s;
+        animation-name: name;
+    }
+    @keyframes {name} {
+        from {
+          transform: scale3d(1, 1, 1);
+        }
+        25% {
+          if (scaleAmount < 1.1) {
+            transform: scale3d(scaleAmount, scaleAmount, 1)
+          } else {
+            transform: scale3d(scaleAmount, scaleAmount, 1) translateX(-4.5px*scaleAmount) translateY(1px*scaleAmount)
+          }
+        }
+        to {
+          transform: scale3d(1, 1, 1);
+        }
     }
 }
+
+testStateChangeAnimation(testStart, 1.05)
+testStateChangeAnimation(testComplete, 2)
